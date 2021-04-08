@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = 'https://cors-anywhere.herokuapp.com/https://api.twitter.com/2' // temp CORS proxy
+const baseUrl = '/api'
 let nextToken
 
 const formatTweets = (response) => {
@@ -27,6 +27,7 @@ const getTweets = async () => {
 
   const headers = {
     Authorization: `Bearer ${process.env.REACT_APP_BEARER_TOKEN}`,
+    'Access-Control-Allow-Origin': '*',
   }
 
   let params = {
@@ -45,7 +46,7 @@ const getTweets = async () => {
 
   let response
   try {
-    response = await axios.get(`${baseUrl}/users/59952732/tweets`, { params, headers })
+    response = await axios.get(`${baseUrl}/2/users/59952732/tweets`, { params, headers })
   } catch (error) {
     console.error(error)
   }
