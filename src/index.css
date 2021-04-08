@@ -1,9 +1,13 @@
 :root {
   --bg-gray: rgb(240, 242, 245);
+  --text-gray: rgb(101, 103, 107);
+  --text-black: rgb(27, 27, 27);
 }
 
 body {
+  font-family: "Roboto", sans-serif;
   background-color: var(--bg-gray);
+  color: var(--text-black);
 }
 
 .App-container {
@@ -19,6 +23,61 @@ body {
   background-color: white;
   margin: 8px 64px;
   padding: 16px;
+  display: flex;
   border-radius: 4px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.Tweet-portrait {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 16px;
+}
+
+.Tweet-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+@media screen and (max-width: 640px) {
+  .Tweet-header {
+    flex-direction: column;
+    align-items: baseline;
+  }
+}
+
+.Tweet-name {
+  font-weight: 700;
+}
+
+.Tweet-username,
+.Tweet-date {
+  color: var(--text-gray);
+  font-weight: 100;
+}
+
+.Tweet-name,
+.Tweet-username,
+.Tweet-date {
+  margin-right: 4px;
+}
+
+.Tweet-footer {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.Tweet-likes,
+.Tweet-retweets,
+.Tweet-replies {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  align-items: center;
 }
