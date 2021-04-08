@@ -7,12 +7,9 @@ const App = () => {
   const [tweets, setTweets] = useState([])
   const [tweetsLoaded, setTweetsLoaded] = useState(false)
 
-  console.log(tweets)
-
-  // load initial tweets
   useEffect(() => {
     const fetchTweets = async () => {
-      let tweetData = JSON.parse(localStorage.getItem('tweets'))
+      let tweetData
 
       if (!tweetData) {
         try {
@@ -20,7 +17,6 @@ const App = () => {
         } catch (error) {
           console.log(error)
         }
-        localStorage.setItem('tweets', JSON.stringify(tweetData))
       }
 
       setTweets(tweetData)
@@ -29,18 +25,18 @@ const App = () => {
     fetchTweets()
   }, [])
 
-  // const handleGetMoreTweets = () => {
-  //   const getMoreTweets = async () => {
-  //     let tweetData
-  //     try {
-  //       tweetData = await tweetsService.getTweets()
-  //     } catch (error) {
-  //       console.error(error)
-  //     }
-  //     setTweets([...tweets, ...tweetData])
-  //   }
-  //   getMoreTweets()
-  // }
+  const handleGetMoreTweets = () => {
+    const getMoreTweets = async () => {
+      let tweetData
+      try {
+        tweetData = await tweetsService.getTweets()
+      } catch (error) {
+        console.error(error)
+      }
+      setTweets([...tweets, ...tweetData])
+    }
+    getMoreTweets()
+  }
 
   if (!tweetsLoaded) return <div>Loading...</div>
 
@@ -49,9 +45,9 @@ const App = () => {
       <Header />
       <div className="App-container">
         {tweets.map((tweet) => (
-          <Tweet tweet={tweet} />
+          <Tweet key={tweet.id} tweet={tweet} />
         ))}
-        <button className="App-button" type="button">Get More Tweets!</button>
+        <button className="App-button" type="button" onClick={handleGetMoreTweets}>Get More Tweets!</button>
       </div>
     </div>
   )

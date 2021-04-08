@@ -6,7 +6,7 @@ import { ReactComponent as RetweetIcon } from '../assets/retweet-icon.svg'
 
 const Tweet = ({ tweet }) => {
   return (
-    <div className="Tweet-root" key={tweet.id}>
+    <div className="Tweet-root">
       <div className="Tweet-portrait">
         <img src={tweet.profileImage} alt="" width="64" />
       </div>
