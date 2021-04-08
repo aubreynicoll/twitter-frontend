@@ -27,7 +27,6 @@ const getTweets = async () => {
 
   const headers = {
     Authorization: `Bearer ${process.env.REACT_APP_BEARER_TOKEN}`,
-    'Access-Control-Allow-Origin': '*',
   }
 
   let params = {
