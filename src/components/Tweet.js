@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
-import twitterIcon from '../assets/twitter-icon.png'
 import { ReactComponent as LikeIcon } from '../assets/like-icon.svg'
 import { ReactComponent as CommentIcon } from '../assets/comment-icon.svg'
 import { ReactComponent as RetweetIcon } from '../assets/retweet-icon.svg'
@@ -9,7 +8,7 @@ const Tweet = ({ tweet }) => {
   return (
     <div className="Tweet-root" key={tweet.id}>
       <div className="Tweet-portrait">
-        <img src={twitterIcon} alt="" width="64" />
+        <img src={tweet.profileImage} alt="" width="64" />
       </div>
       <div className="Tweet-content">
         <div className="Tweet-header">
@@ -22,6 +21,9 @@ const Tweet = ({ tweet }) => {
         </div>
         <div className="Tweet-body">
           {tweet.text}
+        </div>
+        <div className="Tweet-media">
+          {tweet.media && <img src={tweet.media.url} alt="" />}
         </div>
         <div className="Tweet-footer">
           <div className="Tweet-replies">

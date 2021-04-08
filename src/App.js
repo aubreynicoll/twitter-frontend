@@ -7,6 +7,8 @@ const App = () => {
   const [tweets, setTweets] = useState([])
   const [tweetsLoaded, setTweetsLoaded] = useState(false)
 
+  console.log(tweets)
+
   // load initial tweets
   useEffect(() => {
     const fetchTweets = async () => {
