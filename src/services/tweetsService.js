@@ -4,15 +4,19 @@ const baseUrl = 'https://cors-anywhere.herokuapp.com/https://api.twitter.com/2' 
 let nextToken
 
 const formatTweets = (response) => {
+  const { media, users } = response.data.includes
+
   const tweets = response.data.data.map((d) => ({
     id: d.id,
     date: d.created_at,
     text: d.text,
-    name: response.data.includes.users[0].name,
-    username: response.data.includes.users[0].username,
+    name: users[0].name,
+    username: users[0].username,
     likes: d.public_metrics.like_count,
     retweets: d.public_metrics.retweet_count,
     replies: d.public_metrics.reply_count,
+    media: media.find((m) => (m.type === 'photo' && m.media_key === d.attachments?.media_keys[0])),
+    profileImage: users[0].profile_image_url,
   }))
 
   return tweets
@@ -27,7 +31,9 @@ const getTweets = async () => {
 
   let params = {
     'tweet.fields': 'created_at,public_metrics,attachments',
-    expansions: 'author_id',
+    expansions: 'author_id,attachments.media_keys',
+    'media.fields': 'url',
+    'user.fields': 'profile_image_url',
   }
 
   if (nextToken) {
