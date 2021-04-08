@@ -11,12 +11,10 @@ const App = () => {
     const fetchTweets = async () => {
       let tweetData
 
-      if (!tweetData) {
-        try {
-          tweetData = await tweetsService.getTweets()
-        } catch (error) {
-          console.log(error)
-        }
+      try {
+        tweetData = await tweetsService.getTweets()
+      } catch (error) {
+        console.log(error)
       }
 
       setTweets(tweetData)
