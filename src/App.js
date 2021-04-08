@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import tweetsService from './services/tweetsService'
 import Tweet from './components/Tweet'
+import Header from './components/Header'
 
 const App = () => {
   const [tweets, setTweets] = useState([])
@@ -42,11 +43,14 @@ const App = () => {
   if (!tweetsLoaded) return <div>Loading...</div>
 
   return (
-    <div className="App-container">
-      {tweets.map((tweet) => (
-        <Tweet tweet={tweet} />
-      ))}
-      {/* <button type="button" onClick={handleGetMoreTweets}>Get More Tweets!</button> */}
+    <div>
+      <Header />
+      <div className="App-container">
+        {tweets.map((tweet) => (
+          <Tweet tweet={tweet} />
+        ))}
+        <button className="App-button" type="button">Get More Tweets!</button>
+      </div>
     </div>
   )
 }

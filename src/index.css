@@ -2,12 +2,24 @@
   --bg-gray: rgb(240, 242, 245);
   --text-gray: rgb(101, 103, 107);
   --text-black: rgb(27, 27, 27);
+  --twitter-blue: rgb(27, 161, 243);
 }
 
 body {
+  margin: 0;
+  padding: 0;
   font-family: "Roboto", sans-serif;
   background-color: var(--bg-gray);
   color: var(--text-black);
+}
+
+.Header-root {
+  background-color: var(--twitter-blue);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .App-container {
@@ -19,6 +31,22 @@ body {
   align-items: center;
 }
 
+.App-button {
+  margin: 32px auto;
+  background-color: white;
+  border-color: var(--twitter-blue);
+  color: var(--twitter-blue);
+  border: 2px solid var(--twitter-blue);
+  padding: 16px;
+  border-radius: 4px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.App-button:hover {
+  background-color: var(--twitter-blue);
+  color: white;
+}
 .Tweet-root {
   background-color: white;
   margin: 8px 64px;
@@ -67,7 +95,7 @@ body {
 }
 
 .Tweet-footer {
-  margin-top: 8px;
+  margin-top: 16px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
