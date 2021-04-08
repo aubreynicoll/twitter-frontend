@@ -52,7 +52,7 @@ const getTweets = async () => {
 
   nextToken = response.data.meta?.next_token || null
 
-  return formatTweets(response)
+  return [formatTweets(response), Boolean(nextToken)]
 }
 
 const tweetsService = {

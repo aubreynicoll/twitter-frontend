@@ -6,19 +6,22 @@ import Header from './components/Header'
 const App = () => {
   const [tweets, setTweets] = useState([])
   const [tweetsLoaded, setTweetsLoaded] = useState(false)
+  const [hasMoreTweets, setHasMoreTweets] = useState(false)
 
   useEffect(() => {
     const fetchTweets = async () => {
       let tweetData
+      let hasNextToken
 
       try {
-        tweetData = await tweetsService.getTweets()
+        [tweetData, hasNextToken] = await tweetsService.getTweets()
       } catch (error) {
         console.log(error)
       }
 
       setTweets(tweetData)
       setTweetsLoaded(true)
+      setHasMoreTweets(hasNextToken)
     }
     fetchTweets()
   }, [])
@@ -26,12 +29,16 @@ const App = () => {
   const handleGetMoreTweets = () => {
     const getMoreTweets = async () => {
       let tweetData
+      let hasNextToken
+
       try {
-        tweetData = await tweetsService.getTweets()
+        [tweetData, hasNextToken] = await tweetsService.getTweets()
       } catch (error) {
         console.error(error)
       }
+
       setTweets([...tweets, ...tweetData])
+      setHasMoreTweets(hasNextToken)
     }
     getMoreTweets()
   }
@@ -45,7 +52,7 @@ const App = () => {
         {tweets.map((tweet) => (
           <Tweet key={tweet.id} tweet={tweet} />
         ))}
-        <button className="App-button" type="button" onClick={handleGetMoreTweets}>Get More Tweets!</button>
+        {hasMoreTweets && <button className="App-button" type="button" onClick={handleGetMoreTweets}>Get More Tweets!</button>}
       </div>
     </div>
   )
